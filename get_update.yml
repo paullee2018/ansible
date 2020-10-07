@@ -1,0 +1,15 @@
+---
+  - name: Check the remote host uptime
+    hosts: test_pi
+    remote_user: pi
+    tasks:
+      - name: Execute the Uptime command over Command module
+        register: uptimeoutput
+        command: "uptime"
+      - debug:
+          var: uptimeoutput.stdout_lines
+      - name: Execute the df -h command over Command module
+        register: driveoutput
+        command: "df -h"
+      - debug:
+          var: driveoutput.stdout_lines
